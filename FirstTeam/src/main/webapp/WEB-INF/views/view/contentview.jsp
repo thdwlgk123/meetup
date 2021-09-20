@@ -60,11 +60,13 @@
 					lon : lon,
 					address : address
 				},
-				dataType : 'text',
-				success : function() {
+				dataType : 'json',
+				success : function(json) {
+					console.log(json);
+					if (json.code == "success"){
 					alert("신청이 성공적으로 완료되었습니다.");
-					window.location.replace("allclassview");
-
+					window.location.replace("classview?tid="+${classinfo.tid});
+					}
 				}
 
 			}); 
@@ -313,8 +315,7 @@ body, ul, li {
 						</ul>
 						<c:choose>
 							<c:when test="${classinfo.tuserid eq user}">
-								<input type="hidden" id="tid" value="${classinfo.tid }">
-								<c:if test="${classinfo.tspace ne 'zoom'}">								
+								<input type="hidden" id="tid" value="${classinfo.tid }">					
 									<table class="table table-bordered table-hover" style="text-align: center;width:50%; border: 1px solid #dddddd;">
 										<tr>
 											<td>신청자</td>
@@ -325,7 +326,6 @@ body, ul, li {
 											</tr>	
 										</c:forEach>
 									</table>
-								</c:if>
 							</c:when>
 
 							<c:otherwise>
@@ -352,27 +352,14 @@ body, ul, li {
 											<c:choose>
 												<c:when test="${checkuser eq 0}">
 													<p>
-														<c:if test="${tSpaceType == 'locfix'}">
-															<c:if test="${availnum > 0}">
-																<button class="btn btn-default" id="applybtn"
-																	onclick="register();">신청하기</button>
-															</c:if>
-															
-															<c:if test="${availnum <= 0}">
-																<button class="btn btn-default" id="applybtn"
-																	onclick="banregister();">신청하기</button>	
-															</c:if>
-														</c:if>										
-														<c:if test="${tSpaceType == 'off'}">
-															<c:if test="${availnum > 0}">
-															<button class="btn btn-default" id="applybtn"
-																	onclick="register();">신청하기</button>															
-															</c:if>
-															<c:if test="${availnum <= 0}">
-																<button class="btn btn-default" id="applybtn"
-																	onclick="banregister();">신청하기</button>	
-															</c:if>
-														</c:if>
+														<c:if test="${availnum > 0}">
+															<button type="button" class="btn btn-default" id="applybtn"
+																onclick="register();">신청하기</button>
+														</c:if>														
+														<c:if test="${availnum <= 0}">
+															<button type="button" class="btn btn-default" id="applybtn"
+																onclick="banregister();">신청하기</button>	
+														</c:if>									
 														<input type="hidden" id="tid" value="${classinfo.tid }">
 														<input type="hidden" id="title"
 															value="${classinfo.title }">
@@ -423,100 +410,64 @@ body, ul, li {
 					<h2>상세내용</h2>
 					<p>${classinfo.tcontent }</p>
 					<hr id="info2" />
-					<c:choose>
-						<c:when test="${classinfo.tuserid eq user}">
-							<h2>신청자 위치기반 실시간 추천장소</h2>
-							<c:if test="${classinfo.tnownum == 0}">
-								<h5>아직 참가인원이 없습니다.<img src="/images/doo.png" width="140px"></h5>
-							</c:if>
-
-							<c:if test="${classinfo.tnownum > 0}">
-
-								<div class="map_wrap">
-									<div id="maprecommand"
-										style="width: 1400px; height: 100%; position: relative; overflow: hidden;"></div>
-									<ul id="category">
-										<li id="BK9" data-order="0"><span
-											class="category_bg bank"></span> 은행</li>
-										<li id="MT1" data-order="1"><span
-											class="category_bg mart"></span> 마트</li>
-										<li id="PM9" data-order="2"><span
-											class="category_bg pharmacy"></span> 약국</li>
-										<li id="OL7" data-order="3"><span class="category_bg oil"></span>
-											주유소</li>
-										<li id="CE7" data-order="4"><span
-											class="category_bg cafe"></span> 카페</li>
-										<li id="CS2" data-order="5"><span
-											class="category_bg store"></span> 편의점</li>
-									</ul>
-								</div>
-							</c:if>
-						</c:when>
-						<c:otherwise>
 							<h2>지도보기</h2>
-
-
 							<c:if test="${tSpaceType == 'locfix'}">
 								<p id="tSpace">${classinfo.tspace }</p>
 
 
 								<div id="map" style="width: 100%; height: 350px;"></div>
-
-
 								<script>
-							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-							mapOption = {
-								center : new kakao.maps.LatLng(33.450701,
-										126.570667), // 지도의 중심좌표
-								level : 3
-							// 지도의 확대 레벨
-							};
-
-							// 지도를 생성합니다    
-							var map = new kakao.maps.Map(mapContainer,
-									mapOption);
-
-							// 주소-좌표 변환 객체를 생성합니다
-							var geocoder = new kakao.maps.services.Geocoder();
-
-							var tSpace = $("#tSpace").text();
-							console.log(tSpace);
-							// 주소로 좌표를 검색합니다
-							geocoder
-									.addressSearch(
-											tSpace,
-											function(result, status) {
-
-												// 정상적으로 검색이 완료됐으면 
-												if (status === kakao.maps.services.Status.OK) {
-
-													var coords = new kakao.maps.LatLng(
-															result[0].y,
-															result[0].x);
-
-													// 결과값으로 받은 위치를 마커로 표시합니다
-													var marker = new kakao.maps.Marker(
-															{
-																map : map,
-																position : coords
-															});
-
-													// 인포윈도우로 장소에 대한 설명을 표시합니다
-													var infowindow = new kakao.maps.InfoWindow(
-															{
-																content : '<div style="width:150px;text-align:center;padding:6px 0;">모임장소</div>'
-															});
-													infowindow
-															.open(map, marker);
-
-													// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-													map.setCenter(coords);
-												}
-											});
-						</script>
+									var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+									mapOption = {
+										center : new kakao.maps.LatLng(33.450701,
+												126.570667), // 지도의 중심좌표
+										level : 3
+									// 지도의 확대 레벨
+									};
+		
+									// 지도를 생성합니다    
+									var map = new kakao.maps.Map(mapContainer,
+											mapOption);
+		
+									// 주소-좌표 변환 객체를 생성합니다
+									var geocoder = new kakao.maps.services.Geocoder();
+		
+									var tSpace = $("#tSpace").text();
+									console.log(tSpace);
+									// 주소로 좌표를 검색합니다
+									geocoder
+											.addressSearch(
+													tSpace,
+													function(result, status) {
+		
+														// 정상적으로 검색이 완료됐으면 
+														if (status === kakao.maps.services.Status.OK) {
+		
+															var coords = new kakao.maps.LatLng(
+																	result[0].y,
+																	result[0].x);
+		
+															// 결과값으로 받은 위치를 마커로 표시합니다
+															var marker = new kakao.maps.Marker(
+																	{
+																		map : map,
+																		position : coords
+																	});
+		
+															// 인포윈도우로 장소에 대한 설명을 표시합니다
+															var infowindow = new kakao.maps.InfoWindow(
+																	{
+																		content : '<div style="width:150px;text-align:center;padding:6px 0;">모임장소</div>'
+																	});
+															infowindow
+																	.open(map, marker);
+		
+															// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+															map.setCenter(coords);
+														}
+													});
+							</script>
 							</c:if>
-
-
 							<c:if test="${tSpaceType == 'locrecommand'}">
 
 
@@ -602,10 +553,7 @@ body, ul, li {
 							}
 						</script>
 
-
 							</c:if>
-						</c:otherwise>
-					</c:choose>
 					<hr id="info4" />
 					<h2>신청안내</h2>
 					<p>

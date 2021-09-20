@@ -1,5 +1,6 @@
 package com.study.springboot.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -71,7 +72,14 @@ public class BoardService implements IBoardService{
 		
 		int availnum=memnum-nownum;
 		System.out.println("신청가능한 인원수 : "+ availnum);
-		
+		//클래스 모임신청기간 및 모임기간 수정
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+		mv.addObject("classstartdate",simpleDateFormat.format(dto.getClassstartdate()));
+		mv.addObject("classenddate",simpleDateFormat.format(dto.getClassenddate()));
+		mv.addObject("regstartdate",simpleDateFormat.format(dto.getRegstartdate()));
+		mv.addObject("regenddate",simpleDateFormat.format(dto.getRegenddate()));
 		//클래스 가입 멤버 list 뽑아오기		???
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;        
@@ -197,7 +205,7 @@ public class BoardService implements IBoardService{
 			
 			if(tSpaceType.equals("online")) {
 				tSpace = "zoom";
-			}else if (tSpaceType.equals("locrecommand")) {
+			}else if (tSpaceType.equals("locnon")) {
 				tSpace = "장소 미정";
 			}
 			else if (tSpaceType.equals("locfix")) {
@@ -270,7 +278,7 @@ public class BoardService implements IBoardService{
 			
 			if(tSpaceType.equals("online")) {
 				tSpace = "zoom";
-			}else if (tSpaceType.equals("locrecommand")) {
+			}else if (tSpaceType.equals("locnon")) {
 				tSpace = "장소 미정";
 			}
 			else if (tSpaceType.equals("locfix")) {

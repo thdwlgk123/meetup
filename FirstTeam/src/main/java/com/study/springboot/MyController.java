@@ -354,7 +354,7 @@ public class MyController {
 
 	// 클래스 신청하기
 	@RequestMapping("view/applyclass")
-	public String applyClass(HttpServletRequest request) {
+	public @ResponseBody String applyClass(HttpServletRequest request) {
 		System.out.println("view/applyclass");
 		String tid = request.getParameter("tid");
 		String title = request.getParameter("title");
@@ -362,7 +362,7 @@ public class MyController {
 		String lon = request.getParameter("lon");
 		String address = request.getParameter("address");
 		
-		int nResult = cs.applyClass(tid, title, lat, lon, address);
+		String json = cs.applyClass(tid, title, lat, lon, address);
 //		String type = request.getParameter("");
 //		
 //		if (!type.equals("off")) {
@@ -372,7 +372,7 @@ public class MyController {
 
 		String data = "redirect:classview?tid=" + tid;
 
-		return data;
+		return json;
 	}
 
 	// 전체 클래스 조회
@@ -598,15 +598,16 @@ public class MyController {
 	@RequestMapping("chat/managerclasschat")
 	public String goManagerChatPage(HttpServletRequest request, Model model) {
 		System.out.println("goManagerChatPage()");
+		String classid=request.getParameter("classid");
 		String memid=request.getParameter("memid");
 		
 		System.out.println("classid:"+request.getParameter("classid"));
-		model.addAttribute("classid", memid);
+		model.addAttribute("classid", classid);
 		model.addAttribute("manprofimg", us.getProfileImage());
 		
 		System.out.println("memid: "+memid);
 		String memprofimg=us.getProfileImage2(memid);
-		model.addAttribute("memid", request.getParameter("memid"));
+		model.addAttribute("memid", memid);
 		model.addAttribute("memprofimg", memprofimg);
 		return "/chat/managerclasschat";
 	}

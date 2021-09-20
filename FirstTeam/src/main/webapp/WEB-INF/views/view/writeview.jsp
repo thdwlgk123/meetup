@@ -191,7 +191,7 @@
 		$('#locationselection')
 				.html(
 						'<div class="btn-group" data-toggle="buttons"><input type="radio" onclick="kakaomap();" name="tSpaceType" id="option3" value="locfix">장소지정'
-						+'<input type="radio" onclick="recommand();" name="tSpaceType" id="option3" value="locfix">장소미정</div>');
+						+'<input type="radio" onclick="recommand();" name="tSpaceType" id="option3" value="locnon">장소미정</div>');
 	}
 
 	function kakaomap() {
@@ -295,6 +295,7 @@
 	}
 	
 	function checkwrite(){
+
 		if($('#title').val().length <10){
 			alert('제목은 10자 이상 입력하세요');
 			$('#title').focus();
@@ -314,7 +315,7 @@
 			alert('모임 기간 및 신청 기간을 입력해주세요.');
 			return false;
 		}
-		if($('tMemnum').val().length==0){
+		if($('#tMemnum').val().length==0){
 			alert('모집인원은 필수사항입니다.');
 			return false;
 		}

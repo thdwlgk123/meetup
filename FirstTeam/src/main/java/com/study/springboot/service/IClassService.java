@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.study.springboot.dto.ClassManagerDto;
 
 public interface IClassService {
-	public int applyClass(String tid, String title, String lat, String lon, String address);
+	public String applyClass(String tid, String title, String lat, String lon, String address);
 	ModelAndView getApplyClassInfo();
 	public String quitClass(String userid, String classid);
 	public int doLike(String tid, String classtitle);

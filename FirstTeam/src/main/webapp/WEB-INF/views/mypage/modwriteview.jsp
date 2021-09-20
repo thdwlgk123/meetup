@@ -196,8 +196,9 @@
 		$('#locationsearch').hide();
 
 		$('#locationselection')
-				.html(
-						'<div class="btn-group" data-toggle="buttons"><input type="radio" onclick="kakaomap();" name="tSpaceType" id="option3" value="locfix">장소지정</div>');
+		.html(
+				'<div class="btn-group" data-toggle="buttons"><input type="radio" onclick="kakaomap();" name="tSpaceType" id="option3" value="locfix">장소지정'
+				+'<input type="radio" onclick="recommand();" name="tSpaceType" id="option3" value="locnon">장소미정</div>');
 	}
 
 	function kakaomap() {
@@ -319,7 +320,7 @@
 			alert('모임 기간 및 신청 기간을 입력해주세요.');
 			return false;
 		}
-		if($('tMemnum').val().length==0){
+		if($('#tMemnum').val().length==0){
 			alert('모집인원은 필수사항입니다.');
 			return false;
 		}
@@ -437,21 +438,21 @@
 					<tr>
 					<td rowspan="3">문의/연락처</td>
 						<td>담당자명</td>
-						<td colspan="2"><input class="form-control" type="text" name="mName" value="${classinfo.mname }"></td>
+						<td colspan="2"><input class="form-control" type="text" id="mName" name="mName" value="${classinfo.mname }"></td>
 					</tr>
 					
 					<tr>
 						<td>전화번호</td>
-						<td colspan="2"><input class="form-control" type="text" name="mTel" value="${classinfo.mtel }"></td>
+						<td colspan="2"><input class="form-control" type="text" id="mTel" name="mTel" value="${classinfo.mtel }"></td>
 					</tr>
 					
 					<tr>
 						<td>이메일</td>
-						<td colspan="2"><input class="form-control" type="text" name="mEmail" value="${classinfo.memail }"></td>
+						<td colspan="2"><input class="form-control" type="text" id="mEmail" name="mEmail" value="${classinfo.memail }"></td>
 					</tr>
 					<tr>
 						<td>간단한 모임소개</td>
-						<td colspan="4"><input class="form-control" type="text" name="tIntro" value="${classinfo.tintro }"></td>
+						<td colspan="4"><input class="form-control" type="text" id="tIntro" name="tIntro" value="${classinfo.tintro }"></td>
 
 					</tr>
 					<tr>

@@ -366,7 +366,7 @@ height:40px;
 			  				+year+"."+month+"."+day+"&nbsp; "+hour+":"+minute+"</span>";
 			  li.innerHTML =content;
 			   --%>
-			  li.innerHTML ="<div class=\"row\"><div class=\"col-lg-12\"><div class=\"media\"><div class=\"media-body\"><h4 class=\"media-heading\"><a href=\"/chat/managerclasschat?classid="+<%=classid%>+"&memid="+snap.val().userId+"\">&nbsp;&nbsp;"+snap.val().userId+"&nbsp;&nbsp;님의 문의'</a><span class=\"small pull-right\"></span></h4><p>"+snap.val().message+"<span>&nbsp;&nbsp;"+year+"."+month+"."+day+" "+hour+":"+minute+"</span></p></div></div></div></div>";
+			  li.innerHTML ="<div class=\"row\"><div class=\"col-lg-12\"><div class=\"media\"><div class=\"media-body\"><h4 class=\"media-heading\"><a href=\"/chat/managerclasschat?classid="+<%=classid%>+"&memid="+snap.val().userId+"\">&nbsp;&nbsp;"+snap.val().userId+"&nbsp;&nbsp;님의 문의</a><span class=\"small pull-right\"></span></h4><p>"+snap.val().message+"<span>&nbsp;&nbsp;"+year+"."+month+"."+day+" "+hour+":"+minute+"</span></p></div></div></div></div>";
 	
 			  // 삭제, 수정시 변동사항 체크를 위하여
 			  li.id = snap.key;

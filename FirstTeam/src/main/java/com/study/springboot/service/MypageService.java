@@ -131,6 +131,13 @@ public class MypageService implements IMypageService{
 		mv.addObject("classenddate",simpleDateFormat.format(dto.getClassenddate()));
 		mv.addObject("regstartdate",simpleDateFormat.format(dto.getRegstartdate()));
 		mv.addObject("regenddate",simpleDateFormat.format(dto.getRegenddate()));
+		
+		//주소와 상세주소 분리
+		String tSpace=dto.getTspace().substring(0, dto.getTspace().indexOf(" "));
+		String tSpaceDetail=dto.getTspace().substring(dto.getTspace().indexOf("/")+2);
+
+		mv.addObject("tSpace", tSpace);
+		mv.addObject("tSpaceDetail", tSpaceDetail);
 		mv.addObject("classinfo", dto);
 		
 		return mv;

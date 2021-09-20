@@ -16,7 +16,7 @@
 		update board set tnownum=tnownum+1 where tid=#{0}
 	</update>
 	<update id="deleteMemnumDao">
-		update board set nownum=nownum-1 where tid=#{0}
+		update board set tnownum=tnownum-1 where tid=#{0}
 	</update>
 	<select id="getOpenClassInfoDao" resultType="com.study.springboot.dto.BoardDto">
 		select * from board where tuserid=#{0} order by tid desc

@@ -78,13 +78,20 @@ public class UserService implements IUserService{
         String userid = userDetails.getUsername();
         
         String profileimage=userdao.getUserProfileDao(userid);
+        if(profileimage==null) {
+        	profileimage="not-available.png";
+        }
+        System.out.println("getProfileImage() profile image: "+profileimage);
         
         return profileimage;
 	}
 	@Override
 	public String getProfileImage2(String userid) {    
         String profileimage=userdao.getUserProfileDao(userid);
-        
+        if(profileimage==null) {
+        	profileimage="not-available.png";
+        }
+        System.out.println("getProfileImage2() profile image: "+profileimage);
         return profileimage;
 	}
 }

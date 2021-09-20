@@ -27,14 +27,15 @@ public class ClassService implements IClassService{
 	IClassLikeManagerDao cld;
 
     
-	public int applyClass(String tid, String title, String lat, String lon, String address) {
+	public String applyClass(String tid, String title, String lat, String lon, String address) {
 		    
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails)principal;    
         String userid = userDetails.getUsername();
         
 		int Itid=Integer.parseInt(tid);
-		
+		String json="{\"code\":\"fail\"}";
+				
 		System.out.println("tid : "+tid+",title: "+title+"lat: "+lat+"lon : "+lon+",address: "+address);
 		
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -64,10 +65,11 @@ public class ClassService implements IClassService{
 		System.out.println("insert nResult : "+nResult);
 		if(nResult==1) {
 			int result=bd.addMemnumDao(Itid);
+			json="{\"code\":\"success\"}";
 			System.out.println("update board result: "+result);
 		}
 
-		return nResult;
+		return json;
 	}
 	public ModelAndView getApplyClassInfo(){
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

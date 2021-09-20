@@ -390,10 +390,10 @@ function enterkey() {
 			  // 삭제, 수정시 변동사항 체크를 위하여
 			  
 			  if(chatId==manId){
-				li.innerHTML ="<div class=\"row\"><div class=\"col-lg-12\"><div class=\"media\"><a class=\"pull-right\" href=\"#\"><img class=\"media-object img-circle img-chat\" src=\"/images/${manprofimg}\" alt=\"\"></a><div class=\"pull-right\"><h4 class=\"media-heading\">"+snap.val().userId+"&nbsp;(클래스관리자)"+"<span class=\"small pull-left\"></span></h4><p>"+snap.val().message+"<span>&nbsp;&nbsp;"+year+"."+month+"."+day+" "+hour+":"+minute+"</span></p></div></div></div></div>";				  
+				li.innerHTML ="<div class=\"row\"><div class=\"col-lg-12\"><div class=\"media\"><a class=\"pull-right\" href=\"#\"><img class=\"media-object img-circle img-chat\" src=\"/image/${manprofimg}\" alt=\"\"></a><div class=\"pull-right\"><h4 class=\"media-heading\">"+snap.val().userId+"&nbsp;(클래스관리자)"+"<span class=\"small pull-left\"></span></h4><p>"+snap.val().message+"<span>&nbsp;&nbsp;"+year+"."+month+"."+day+" "+hour+":"+minute+"</span></p></div></div></div></div>";				  
 			  }else{
 /* 			  "<span>"+snap.val().userId+":"+snap.val().message+"</span><span>&nbsp;&nbsp;"+year+"."+month+"."+day+" "+hour+":"+minute+"</span>"; */
-			  	li.innerHTML ="<div class=\"row\"><div class=\"col-lg-12\"><div class=\"media\"><a class=\"pull-left\" href=\"#\"><img class=\"media-object img-circle img-chat\" src=\"/images/${memprofimg}\" alt=\"\"></a><div class=\"media-body\"><h4 class=\"media-heading\">"+snap.val().userId+"<span class=\"small pull-right\"></span></h4><p>"+snap.val().message+"<span>&nbsp;&nbsp;"+year+"."+month+"."+day+" "+hour+":"+minute+"</span></p></div></div></div></div>";
+			  	li.innerHTML ="<div class=\"row\"><div class=\"col-lg-12\"><div class=\"media\"><a class=\"pull-left\" href=\"#\"><img class=\"media-object img-circle img-chat\" src=\"/image/${memprofimg}\" alt=\"\"></a><div class=\"media-body\"><h4 class=\"media-heading\">"+snap.val().userId+"<span class=\"small pull-right\"></span></h4><p>"+snap.val().message+"<span>&nbsp;&nbsp;"+year+"."+month+"."+day+" "+hour+":"+minute+"</span></p></div></div></div></div>";
 			  }// 삭제, 수정시 변동사항 체크를 위하여
 			  li.id = snap.key;
 			  ulList.appendChild(li);
