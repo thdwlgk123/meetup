@@ -544,18 +544,46 @@
 							<td colspan="4" id="onoffselection">
 								<div id="locationselection">
 									<div class="btn-group" data-toggle="buttons">
-										<input type="radio" onclick="kakaomap();" name="tSpaceType" id="option3" value="locfix">장소지정
+										<input type="radio" onclick="kakaomap();" name="tSpaceType" id="option3" value="locfix" checked="checked">장소지정
+										<input type="radio" onclick="recommand();" name="tSpaceType" id="option3" value="locnon">장소미정</div>
 									</div>
 								</div>
 								<div id="locationsearch">
 									<p>모임주최자가 장소를 직접 지정.&nbsp;도로명주소를 검색하여 위치를 확인하신 후 상세주소를 입력해 주세요.</p>
-									<div id="searchdiv"><input type="text" class="form-control" id="searchWord" name="tSpace" placeholder="도로명 주소를 정확하게 입력하세요" value="${classinfo.tspace }">
+									<div id="searchdiv"><input type="text" class="form-control" id="searchWord" name="tSpace" placeholder="도로명 주소를 정확하게 입력하세요" value="${tspace }">
 									<button type="button" class="btn btn-default pull-left" id="searchWordbtn" onclick="searchAction();">검색</button></div>
-									<div id="searchdiv"><input type="text" class="form-control"  placeholder="상세주소를 입력하세요"></div>
+									<div id="searchdiv"><input type="text" class="form-control" value="${tspacedetail}" placeholder="상세주소를 입력하세요"></div>
 								</div>
-								<div id="zoom"></div>
+								<div id="zoom" style="display:none;"></div>
 								<div id="map" style="width: 100%; height: 350px;"></div>
 								<div class="text_wrapper" style="display:none;"><input type="text" id="exactlocation" value="exact" /></div>
+							</td>
+						</tr>
+					</c:when>
+					<c:when test="${classinfo.tspacetype eq 'locnon'}">
+						<tr>
+							<td colspan="4">
+								<div class="btn-group" data-toggle="buttons">
+									<input type="radio" onclick="offlineselect();" name="tSpaceType"
+										id="option1" value="offline" checked="checked">오프라인 <input type="radio" onclick="zoom();"
+										name="tSpaceType" id="option2" value="online">온라인	
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" id="onoffselection">
+								<div id="locationselection">
+									<div class="btn-group" data-toggle="buttons">
+										<input type="radio" onclick="kakaomap();" name="tSpaceType" id="option3" value="locfix">장소지정
+										<input type="radio" onclick="recommand();" name="tSpaceType" id="option3" value="locnon" checked="checked">장소미정</div>
+									</div>
+								</div>
+								<div id="locationsearch">
+									<p>모임 장소를 추후에 공지합니다.</p>
+								</div>
+								<div id="zoom" style="display:none;"></div>
+								<div id="map" style="width: 100%; height: 350px;" style="display:none;"></div>
+								<div class="text_wrapper" style="display:none;" style="display:none;"><input type="text" id="exactlocation" value="exact" /></div>
 							</td>
 						</tr>
 					</c:when>
@@ -574,7 +602,7 @@
 								<div id="locationselection"></div>
 								<div id="locationsearch"></div>
 								<div id="zoom"><a href="https://zoom.us/j/9666418146?pwd=R0g0d0d0eUdoQ0txSXdaN3dHNittUT09">ZOOM 접속</a></div>
-								<div id="map" style="width: 100%; height: 350px;"></div>
+								<div id="map" style="width: 100%; height: 350px;" style="display:none;"></div>
 								<div class="text_wrapper" style="display:none;"><input type="text" id="exactlocation" value="exact" /></div>
 							</td>
 						</tr>
@@ -595,7 +623,7 @@
 </div>
 	<script>
 		if(${classinfo.tspacetype eq 'locfix'}){
-			mapopen();
+			searchAction();
 		}
 		if(${classinfo.payment eq 'charge'}){
 			charge();

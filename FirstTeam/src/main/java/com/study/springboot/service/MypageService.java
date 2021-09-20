@@ -132,12 +132,17 @@ public class MypageService implements IMypageService{
 		mv.addObject("regstartdate",simpleDateFormat.format(dto.getRegstartdate()));
 		mv.addObject("regenddate",simpleDateFormat.format(dto.getRegenddate()));
 		
-		//주소와 상세주소 분리
-		String tSpace=dto.getTspace().substring(0, dto.getTspace().indexOf(" "));
-		String tSpaceDetail=dto.getTspace().substring(dto.getTspace().indexOf("/")+2);
-
-		mv.addObject("tSpace", tSpace);
-		mv.addObject("tSpaceDetail", tSpaceDetail);
+		//tSpacetype=locfix일 시 주소와 상세주소 분리
+		if(dto.getTspacetype().equals("locfix")) {
+			String tSpace=dto.getTspace().substring(0, dto.getTspace().indexOf("/")-1);
+			String tSpaceDetail=dto.getTspace().substring(dto.getTspace().indexOf("/")+2);
+			if(tSpaceDetail==null) {
+				tSpaceDetail="";
+			}
+			mv.addObject("tspace", tSpace);
+			mv.addObject("tspacedetail", tSpaceDetail);
+		}
+		
 		mv.addObject("classinfo", dto);
 		
 		return mv;
