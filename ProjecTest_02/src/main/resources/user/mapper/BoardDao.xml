@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IBoardDao">
+	<select id="AllBoardInfoDao" resultType="com.study.springboot.dto.BoardDto">
+		select * from board order by tid desc
+	</select>
+	<select id="viewClassInfoDao" resultType="com.study.springboot.dto.BoardDto">
+		select * from board where tid=#{0}
+	</select>
+	<select id="getClassInfoDao" resultType="com.study.springboot.dto.BoardDto">
+		select * from board where tid=#{0}
+	</select>
+	<update id="addMemnumDao">
+		update board set tnownum=tnownum+1 where tid=#{0}
+	</update>
+	<update id="deleteMemnumDao">
+		update board set nownum=nownum-1 where tid=#{0}
+	</update>
+	<select id="getOpenClassInfoDao" resultType="com.study.springboot.dto.BoardDto">
+		select * from board where tuserid=#{0} order by tid desc
+	</select>
+	<select id="countOpenClassDao" resultType="int">
+		select count(*) from board where tuserid=#{0}
+	</select>
+	 <insert id="meetupwrite">
+      insert into board (tid, tuserid, tcategory, mname, mtel, memail, title, 
+      tintro, tcontent, tfile, classstartdate, classenddate, regstartdate, 
+      regenddate, tspacetype, tspace, thit, tgroup, tmemnum, tnownum, payment, price) 
+      values (seq_board.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, 
+      #{param6}, #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, 
+      #{param13}, #{param14}, #{param15}, 0, 0, #{param16}, 0, #{param17}, #{param18})
+   </insert>
+   <update id="fixaddress">
+		update board set tspacetype='locfix', tspace=#{param2} where tid=#{param1}
+	</update>
+	<select id="checkManIdDao" resultType="string">
+		select tuserid from board where tid=#{0}
+	</select>
+</mapper>	

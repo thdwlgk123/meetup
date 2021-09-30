@@ -215,8 +215,7 @@ function sOnClick(){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">이용 약관</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">개인정보 처리방침 동의</h5>
       </div>
       <div class="modal-body" style="overflow:scroll; height:350px;">
      <p>
@@ -357,7 +356,7 @@ function sOnClick(){
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기 </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
         <button type="button" class="btn btn-primary" onclick= "checkModal1()" data-bs-dismiss="modal">동의 </button>
       </div>
     </div>
@@ -368,10 +367,9 @@ function sOnClick(){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">서비스 이용약관 동의</h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow:scroll; height:350px;">
      
 <p>
        기타 신청내용
@@ -454,7 +452,7 @@ function sOnClick(){
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기 </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
         <button type="button" class="btn btn-primary" onclick= "checkModal2()" data-bs-dismiss="modal">동의 </button>
       </div>
     </div>
@@ -464,10 +462,9 @@ function sOnClick(){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">마케팅 수신 동의</h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow:scroll; height:350px;">
 <p>      
 회사는 참여신청 기능을 사용하지 않는 모임은 ‘외부접수’로 판단합니다.
 ‘모임소개’ 또는 ‘모임상세정보’에 외부접수 방법으로 연결된 url이 존재할 경우 ‘외부접수’로 판단합니다.
@@ -564,7 +561,7 @@ function sOnClick(){
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기 </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
         <button type="button" class="btn btn-primary" onclick= "checkModal3()" data-bs-dismiss="modal">동의 </button>
       </div>
     </div>

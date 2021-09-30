@@ -140,7 +140,16 @@ public class BoardService implements IBoardService{
 		Double centerY = minLon + ((maxLon - minLon) / 2);
 		
 //		System.out.println(centerX + ", " + centerY);
-		
+		//tSpacetype=locfix일 시 주소와 상세주소 분리
+		if(dto.getTspacetype().equals("locfix")) {
+			String tSpace=dto.getTspace().substring(0, dto.getTspace().indexOf("/")-1);
+			String tSpaceDetail=dto.getTspace().substring(dto.getTspace().indexOf("/")+2);
+			if(tSpaceDetail==null) {
+				tSpaceDetail="";
+			}
+			mv.addObject("tspace", tSpace);
+			mv.addObject("tspacedetail", tSpaceDetail);
+		}
 		//좋아요 수 확인
 		int likecount=classlikeDao.likeCountDao(classid);
 		//userid 좋아요 여부 확인

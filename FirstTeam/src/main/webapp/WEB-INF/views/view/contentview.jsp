@@ -285,7 +285,7 @@ body, ul, li {
 							<li><p>신청기간 : ${regstartdate } ~
 									${regenddate }</p></li>
 							<li><p>
-									모임장소 : ${classinfo.tspace}<span><button type="button" class="btn btn-default btn-xs" onclick="location.href='#info2'">
+									모임장소 : ${tspace} &nbsp; ${tspacedetail}<span><button type="button" class="btn btn-default btn-xs" onclick="location.href='#info2'"></button></span>
 								<c:choose>
 								<c:when test="${classinfo.tuserid eq user}">
 									<c:if test="${classinfo.tspace ne 'zoom'}">
@@ -298,8 +298,7 @@ body, ul, li {
 									</c:if>
 								</c:otherwise>
 								</c:choose>
-		
-								</button></span>
+
 								</p></li>
 							<li><p>
 									모임정원 : ${classinfo.tmemnum}명 &nbsp;&nbsp;
